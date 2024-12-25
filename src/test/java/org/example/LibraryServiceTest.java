@@ -92,7 +92,7 @@ public class LibraryServiceTest {
         Exception exception = assertThrows(Exception.class, () -> {
             library.borrowBook(book.getIsbn());
         });
-        assertEquals("Book is already borrowed", exception.getMessage());
+        assertEquals("Book is currently unavailable", exception.getMessage());
     }
 
     @Test

@@ -75,4 +75,18 @@ public class LibraryService {
 
         bookMap.put(book.getIsbn(), book);
     }
+
+    public String borrowBook(String isbn) throws Exception {
+        if (isbn == null || isbn.isEmpty()) {
+            throw new Exception("Book details cannot be null or empty.");
+        }
+
+        Book book = bookMap.get(isbn);
+        if (book == null || !book.isAvailable()) {
+            throw new Exception("Book is currently unavailable");
+        }
+
+        book.setAvailable(false);
+        return "Book successfully borrowed";
+    }
 }
