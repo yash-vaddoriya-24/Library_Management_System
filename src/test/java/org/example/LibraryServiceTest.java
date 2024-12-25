@@ -1,6 +1,9 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryServiceTest {
@@ -172,4 +175,48 @@ public class LibraryServiceTest {
 
         assertEquals("Book not found", exception.getMessage());
     }
+
+    @Test
+    public void testViewAllAvailableBooks() throws Exception {
+        LibraryService library = new LibraryService();
+        Book book1 = new Book("1234", "Java Basics", "John Doe", 2020);
+        Book book2 = new Book("5678", "Python Basics", "Jane Doe", 2021);
+
+        library.addBook(book1);
+        library.addBook(book2);
+
+        List<Book> availableBooks = library.viewAvailableBooks();
+
+        assertEquals(2, availableBooks.size());
+        assertTrue(availableBooks.contains(book1));
+        assertTrue(availableBooks.contains(book2));
+    }
+
+    @Test
+    public void testNoBooksAvailable() throws Exception {
+        LibraryService library = new LibraryService();
+
+        List<Book> availableBooks = library.viewAvailableBooks();
+
+        assertEquals(0, availableBooks.size());
+    }
+
+    @Test
+    public void testExcludeBorrowedBooks() throws Exception {
+        LibraryService library = new LibraryService();
+        Book book1 = new Book("1234", "Java Basics", "John Doe", 2020);
+        Book book2 = new Book("5678", "Python Basics", "Jane Doe", 2021);
+
+        library.addBook(book1);
+        library.addBook(book2);
+
+        library.borrowBook(book1.getIsbn());
+
+        List<Book> availableBooks = library.viewAvailableBooks();
+
+        assertEquals(1, availableBooks.size());
+        assertTrue(availableBooks.contains(book2));
+        assertFalse(availableBooks.contains(book1));
+    }
+
 }
