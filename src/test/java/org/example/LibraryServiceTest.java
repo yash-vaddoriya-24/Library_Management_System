@@ -119,4 +119,57 @@ public class LibraryServiceTest {
         assertEquals("Book details cannot be null or empty.", exception.getMessage());
     }
 
+    @Test
+    public void testSuccessfulReturn() throws Exception {
+        LibraryService library = new LibraryService();
+        Book book = new Book("1234", "Java Basics", "John Doe", 2020);
+        library.addBook(book);
+
+        library.borrowBook(book.getIsbn());
+
+        String result = library.returnBook(book.getIsbn());
+
+        assertEquals("Book successfully returned", result);
+        assertTrue(book.isAvailable());
+    }
+
+    @Test
+    public void testBookNotBorrowed() throws Exception {
+        LibraryService library = new LibraryService();
+        Book book = new Book("1234", "Java Basics", "John Doe", 2020);
+        library.addBook(book);
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            library.returnBook(book.getIsbn());
+        });
+
+        assertEquals("Book was not borrowed", exception.getMessage());
+    }
+
+    @Test
+    public void testReturnBookWithMissingIsbn() throws Exception {
+        LibraryService library = new LibraryService();
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            library.returnBook(null);
+        });
+        assertEquals("Book details cannot be null or empty.", exception.getMessage());
+
+        exception = assertThrows(Exception.class, () -> {
+            library.returnBook("");
+        });
+        assertEquals("Book details cannot be null or empty.", exception.getMessage());
+    }
+
+    @Test
+    public void testReturnBookThatDoesNotExist() throws Exception {
+        LibraryService library = new LibraryService();
+        Book book = new Book("1234", "Java Basics", "John Doe", 2020);
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            library.returnBook(book.getIsbn());
+        });
+
+        assertEquals("Book not found", exception.getMessage());
+    }
 }
