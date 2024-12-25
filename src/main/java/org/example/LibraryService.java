@@ -89,4 +89,22 @@ public class LibraryService {
         book.setAvailable(false);
         return "Book successfully borrowed";
     }
+
+    public String returnBook(String isbn) throws Exception {
+        if (isbn == null || isbn.isEmpty()) {
+            throw new Exception("Book details cannot be null or empty.");
+        }
+
+        Book book = bookMap.get(isbn);
+        if (book == null) {
+            throw new Exception("Book not found");
+        }
+
+        if (book.isAvailable()) {
+            throw new Exception("Book was not borrowed");
+        }
+
+        book.setAvailable(true);
+        return "Book successfully returned";
+    }
 }
