@@ -1,7 +1,9 @@
 package org.example;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 class Book {
     private String isbn;
@@ -106,5 +108,11 @@ public class LibraryService {
 
         book.setAvailable(true);
         return "Book successfully returned";
+    }
+
+    public List<Book> viewAvailableBooks() {
+        return bookMap.values().stream()
+                .filter(Book::isAvailable)
+                .collect(Collectors.toList());
     }
 }
