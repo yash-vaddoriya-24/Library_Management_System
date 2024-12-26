@@ -33,13 +33,13 @@ This project is developed using the following technologies:
 - Maven/Gradle: For project build and dependency management
 - Git: Version control for tracking changes and collaboration.
 
-## Getting Started 🚀
-Prerequisites 📋
+## 🚀 Getting Started 
+📋 Prerequisites 
 - Java Development Kit (JDK) 17 or higher.
 - IDE (e.g., IntelliJ IDEA, Eclipse, or VS Code).
 - JUnit for running tests.
 
-## 🔧 Installation
+## 🛠️ Installation
 1. Clone the repository:
    ```bash  
     git clone https://github.com/yash-vaddoriya-24/Library_Management_System.git  
@@ -66,11 +66,11 @@ To run the test suite:
 - Validation: The Book class ensures that all required parameters (ISBN, Title, Author, Year) are provided when creating a new book.
 - Error Handling: Proper error handling for cases like borrowing a non-existent or unavailable book.
 
-## Git Repository 🗂️
+## 🗂️ Git Repository
 - Find the source code and all commits in the Git repository here:
   👉 https://github.com/yash-vaddoriya-24/Library_Management_System
 
-## Test Report
+## 🧪 Test Report
 
 - A detailed test report showing the results of all test cases is included in the repository (report.xml).
 
@@ -79,7 +79,7 @@ To run the test suite:
 mvn surefire-report:report  
 ```
 
-## Documentation
+## 📜 Documentation
 
 [Core Java](https://docs.oracle.com/en/java/)\
 [Collections Framework](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/doc-files/coll-index.html)\
@@ -87,7 +87,7 @@ mvn surefire-report:report
 [Github](https://docs.github.com/en)\
 [Git](https://git-scm.com/doc)
 
-## Lessons Learned
+## 💡Lessons Learned
 
 - Effective use of OOP Concepts and Collections Framework
 - SOLID principle
